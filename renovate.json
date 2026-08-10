@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>igonzalezespi/renovate-config"],
+  "baseBranchPatterns": ["main"],
+  "platformAutomerge": false,
+  "lockFileMaintenance": {
+    "description": "This package ships no dependencies and commits no lockfile (see .gitignore), so there is nothing to relock. The shared preset enables lockFileMaintenance with prPriority 10 for every consumer; left on here it heads the queue with a branch that can never produce a diff.",
+    "enabled": false
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "The TypeScript version CI validates against is pinned inside a `run:` step, which no built-in manager parses. Without this the pin is invisible to Renovate and only moves when a human remembers.",
+      "managerFilePatterns": ["/^\\.github/workflows/ci\\.yml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s+run: npm install --no-save --no-package-lock typescript@(?<currentValue>\\S+)"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Everything defaults to human review.",
+      "matchPackageNames": ["*"],
+      "automerge": false
+    },
+    {
+      "description": "Scoped automerge (decision 2026-08-01): devDependencies patch/minor merge themselves once checks are green. Majors stay human.",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true
+    },
+    {
+      "description": "Scoped automerge (decision 2026-08-01): github-actions patch/minor/digest updates.",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["patch", "minor", "digest", "pinDigest"],
+      "automerge": true
+    },
+    {
+      "description": "The CI TypeScript pin must satisfy the published `typescript >=5.5` peerDependency, so it stays human-reviewed: a major here is a statement about what consumers can compile with.",
+      "matchManagers": ["custom.regex"],
+      "matchPackageNames": ["typescript"],
+      "automerge": false
+    }
+  ]
+}

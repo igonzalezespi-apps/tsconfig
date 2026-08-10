@@ -1,0 +1,8 @@
+{
+  "extends": "../../bundler.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true
+  },
+  "include": ["sample.ts"]
+}

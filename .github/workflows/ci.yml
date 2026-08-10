@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Least privilege: this workflow only reads the repo.
+permissions:
+  contents: read
+
+# One run per ref; cancel superseded PR runs, never cancel main.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  validate-configs:
+    name: Validate tsconfig presets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Setup Node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .nvmrc
+
+      # Pinned TypeScript matching the package's `typescript >=5.5` peerDep.
+      # Installed standalone (the package ships no deps and no lockfile).
+      #
+      # The `renovate:` comment is load-bearing: this pin lives in a `run:` step, which no
+      # Renovate manager parses, so without it the version is invisible to the bot and only
+      # moves when a human remembers. It is the same class of blind spot as an unpinned action.
+      - name: Install pinned TypeScript
+        # renovate: datasource=npm depName=typescript
+        run: npm install --no-save --no-package-lock typescript@5.7.3
+
+      - name: Validate configs compile
+        run: npm run validate

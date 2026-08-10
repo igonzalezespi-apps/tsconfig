@@ -1,0 +1,25 @@
+{
+  "name": "@studio/tsconfig",
+  "version": "0.1.0",
+  "description": "Studio shared TypeScript base configs — base (strict core), node (NodeNext), and bundler (Bundler + DOM) variants.",
+  "license": "MIT",
+  "author": "igonzalezespi",
+  "exports": {
+    "./base.json": "./base.json",
+    "./node.json": "./node.json",
+    "./bundler.json": "./bundler.json"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-configs.mjs"
+  },
+  "files": [
+    "base.json",
+    "node.json",
+    "bundler.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "typescript": ">=5.5"
+  }
+}
