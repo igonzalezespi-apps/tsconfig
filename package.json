@@ -1,6 +1,6 @@
 {
   "name": "@studio/tsconfig",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Studio shared TypeScript base configs — base (strict core), node (NodeNext), and bundler (Bundler + DOM) variants.",
   "license": "MIT",
   "author": "igonzalezespi",
