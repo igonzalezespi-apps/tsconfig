@@ -1,7 +1,21 @@
 # tsconfig
 
 Shared, published **TypeScript base configs** for the maintainer's repos: `base.json`,
-`bundler.json`, `node.json`. Public (MIT). Consumed as an npm dependency (`extends`), so each
+`bundler.json`, `node.json`.
+
+> **⚠️ ESTE PAQUETE NO SE PUBLICA EN npm, y la frase de arriba decía lo contrario.**
+>
+> Los consumidores lo instalan como **dependencia de git**, no del registro:
+> `"@studio/tsconfig": "git+https://github.com/igonzalezespi-apps/tsconfig.git#v0.0.0"`.
+>
+> No es un matiz. Comprobado el 2026-08-12: el nombre **`@studio/tsconfig` SÍ existe en npm y es de otra
+> persona** — `mantoni`, «The JavaScript Studio», desde 2016. Un `pnpm add @studio/tsconfig` siguiendo la
+> línea anterior no habría fallado: habría instalado el paquete de un tercero creyendo que era
+> éste. Una falsedad en un contrato que se puede *ejecutar* es peor que una que solo confunde.
+>
+> Lo que sí es cierto y sigue mandando: **la API pública es real**. Un cambio en lo exportado rompe
+> a cada consumidor, y por eso los consumidores lo pinean **por tag**.
+ Public (MIT). Consumed as a **git dependency pinned by tag** and referenced with `extends`, so each
 config is a public API — a compiler-option change affects every consumer's build.
 
 ## Rules
