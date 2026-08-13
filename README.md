@@ -45,7 +45,7 @@ This repo is **not published to npm**. Depend on it by git tag:
 // package.json
 {
   "devDependencies": {
-    "@studio/tsconfig": "github:igonzalezespi/tsconfig#v0.1.0"
+    "@studio/tsconfig": "github:igonzalezespi-apps/tsconfig#v0.1.0"
   }
 }
 ```
@@ -83,7 +83,7 @@ project compiles against one source of truth instead of drifting per-repo copies
 It merges the previously-separate `NodeNext` base and `aca`'s `Bundler` config
 (`verbatimModuleSyntax`, React Native variant) TypeScript configs into one `base`
 plus `node` / `bundler` variants. The companion
-[`@studio/eslint-config`](https://github.com/igonzalezespi/eslint-config) does the
+[`@studio/eslint-config`](https://github.com/igonzalezespi-apps/eslint-config) does the
 same for ESLint.
 
 Consumer migration of the product repos onto this package is a separate,
