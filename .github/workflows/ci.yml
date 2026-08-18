@@ -35,7 +35,7 @@ jobs:
       # moves when a human remembers. It is the same class of blind spot as an unpinned action.
       - name: Install pinned TypeScript
         # renovate: datasource=npm depName=typescript
-        run: npm install --no-save --no-package-lock typescript@5.7.3
+        run: npm install --no-save --no-package-lock typescript@5.9.3
 
       - name: Validate configs compile
         run: npm run validate
