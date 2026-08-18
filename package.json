@@ -20,6 +20,6 @@
     "LICENSE"
   ],
   "peerDependencies": {
-    "typescript": ">=5.5"
+    "typescript": ">=5.9.3"
   }
 }
