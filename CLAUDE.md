@@ -29,4 +29,4 @@ Each config is a public API: a compiler-option change alters every consumer's bu
 ## Reserved to the maintainer (escalate, do not decide)
 
 Breaking a public config API (a stricter `strict*` flag or any compiler-option change that alters
-a consumer's build) · adding a new published export · repo visibility · edits to this contract.
+a consumer's build) · adding a new published export · repo visibility.
