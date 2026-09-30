@@ -5,7 +5,7 @@
 #
 # En una PR que toca este fichero se ejecuta SIN ping (solo lectura): una PR no marca casillas.
 #
-# PILOTO (maestro E3.3): la referencia apunta al commit de la PR de studio-ci mientras no exista
+# Fijado a studio-ci v0.8.0 (maestro E3.3).
 # la etiqueta v0.9.0. Al publicarse, se cambia por el SHA de v0.9.0 con el comentario `# v0.9.0`
 # (lo exige `check-action-pins`) y la PR sale de borrador.
 name: renovate-heartbeat
@@ -26,6 +26,6 @@ permissions:
 
 jobs:
   renovate-heartbeat:
-    uses: igonzalezespi-apps/studio-ci/.github/workflows/renovate-heartbeat.yml@12c226e309bcc2bd94f26df347d097d5dc51aa19 # feat/reutilizables-seguridad
+    uses: igonzalezespi-apps/studio-ci/.github/workflows/renovate-heartbeat.yml@c4daba0fb5fd976d693b9caa11e16cdf11f657ee # v0.8.0
     with:
       ping: ${{ github.event_name != 'pull_request' }}
