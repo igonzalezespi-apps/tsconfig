@@ -5,9 +5,8 @@
 #
 # En una PR que toca este fichero se ejecuta SIN ping (solo lectura): una PR no marca casillas.
 #
-# Fijado a studio-ci v0.8.0 (maestro E3.3).
-# la etiqueta v0.9.0. Al publicarse, se cambia por el SHA de v0.9.0 con el comentario `# v0.9.0`
-# (lo exige `check-action-pins`) y la PR sale de borrador.
+# Fijado por SHA a una etiqueta de studio-ci: la version es el comentario `# vX.Y.Z` de la linea
+# `uses:` (lo exige `check-action-pins`), y no se repite aqui para que no se quede atras.
 name: renovate-heartbeat
 
 on:
