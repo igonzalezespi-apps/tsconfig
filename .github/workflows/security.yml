@@ -26,4 +26,4 @@ permissions:
 
 jobs:
   security:
-    uses: igonzalezespi-apps/studio-ci/.github/workflows/security.yml@a9e9d92b63ec8353646510a3112e0a03eee72c02 # v0.11.1
+    uses: igonzalezespi-apps/studio-ci/.github/workflows/security.yml@0f8ad32bddc3245a0522820c6994834d11dcb122 # v0.11.2
