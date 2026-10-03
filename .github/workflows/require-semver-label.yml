@@ -1,8 +1,11 @@
 # Adaptado del workflow homólogo de los productos, con DOS cambios que no son cosméticos:
 #
-#  1. `branches: [main]`, no `[develop]`. Este repo es trunk→main y no tiene `develop`, así que
-#     copiarlo tal cual daría un workflow que no se dispara NUNCA — verde permanente por no
-#     ejecutarse jamás, que es la peor forma de estar verde.
+#  1. `branches: [main, develop]`. Este repo fue trunk→main hasta la FASE 3; desde entonces el trabajo
+#     entra en `develop` y la promoción `develop` → `main` corta la release. Vigilar solo `main`
+#     dejaba sin control justo las PRs que llevan la etiqueta que decide la versión (y que el merge
+#     automático exige: exactamente una `semver:*`). Aquí se quedó en `[main]` hasta el 2026-10-03,
+#     con una cabecera que seguía diciendo que el repo no tenía `develop`: las PRs de trabajo, que
+#     son casi todas, no disparaban este aviso.
 #
 #  2. `runs-on: ubuntu-latest` fijo, NUNCA `vars.RUNNER_TARGET`. Este repo se gobierna como
 #     público, y apuntar `runs-on` a una máquina propia del estudio desde un repo público es una
@@ -14,7 +17,7 @@
 
 name: Require semver label
 
-# Toda PR a `main` debe llevar al menos una etiqueta semver:* — la más alta
+# Toda PR a `develop` o a `main` debe llevar al menos una etiqueta semver:* — la más alta
 # (major>minor>patch>none) decide el salto de versión del siguiente release.
 #
 # Esto es un AVISO, no una barrera: no hay branch protection en ningún repo de la flota (decisión
@@ -25,7 +28,7 @@ name: Require semver label
 # el 2026-08-09 con 62 PRs ya mergeadas.
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     types: [opened, labeled, unlabeled, synchronize]
 
 concurrency:
