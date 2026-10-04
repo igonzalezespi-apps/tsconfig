@@ -1,0 +1,29 @@
+# Seguridad de este repo con el workflow reutilizable de studio-ci: secretos (gitleaks) y
+# dependencias (npm/pnpm audit). En una PR o un push solo cuenta lo que ese cambio anade; la
+# ejecucion semanal mide la historia completa y el estado absoluto.
+#
+# Este repo no tiene lockfile (el paquete no trae dependencias propias), asi que la auditoria sale
+# como "nada que auditar" y lo que trabaja aqui es la busqueda de secretos.
+#
+# SIN `concurrency` a proposito: el reutilizable trae el suyo, que solo cancela ejecuciones de
+# commits viejos. Uno aqui, si este workflow escuchara `labeled`, volveria a dejar checks
+# `cancelled` en la cabeza de las PRs (y su paso `caller-guard` lo pondria en rojo).
+#
+# Fijado por SHA a una etiqueta de studio-ci: la version es el comentario `# vX.Y.Z` de la linea
+# `uses:` (lo exige `check-action-pins`), y no se repite aqui para que no se quede atras.
+name: security
+
+on:
+  pull_request:
+  push:
+    branches: [develop, main]
+  schedule:
+    - cron: "41 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    uses: igonzalezespi-apps/studio-ci/.github/workflows/security.yml@0f8ad32bddc3245a0522820c6994834d11dcb122 # v0.11.2

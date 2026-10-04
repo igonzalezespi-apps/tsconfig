@@ -1,0 +1,30 @@
+# Pulso de Renovate con el workflow reutilizable de studio-ci. Dos veces por semana marca la
+# casilla "run again" del Dependency Dashboard; Renovate la repinta vacia cada vez que se ejecuta.
+# Si sigue marcada mas de 48 h, Renovate no se esta ejecutando aqui y esto sale en rojo. Tambien
+# falla con la issue de configuracion rota o con una PR del bot parada por un check cancelado.
+#
+# En una PR que toca este fichero se ejecuta SIN ping (solo lectura): una PR no marca casillas.
+#
+# Fijado por SHA a una etiqueta de studio-ci: la version es el comentario `# vX.Y.Z` de la linea
+# `uses:` (lo exige `check-action-pins`), y no se repite aqui para que no se quede atras.
+name: renovate-heartbeat
+
+on:
+  schedule:
+    - cron: "23 6 * * 1,4"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/renovate-heartbeat.yml
+
+permissions:
+  contents: read
+  issues: write          # el ping marca la casilla del dashboard
+  pull-requests: read
+  checks: read
+
+jobs:
+  renovate-heartbeat:
+    uses: igonzalezespi-apps/studio-ci/.github/workflows/renovate-heartbeat.yml@0f8ad32bddc3245a0522820c6994834d11dcb122 # v0.11.2
+    with:
+      ping: ${{ github.event_name != 'pull_request' }}

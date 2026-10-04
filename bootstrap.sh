@@ -22,7 +22,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT"
 
-PLUGINS=(core-dev studio-policy stack-node)
+PLUGINS=(core-dev studio-policy)
 
 # --- 1. Plugins (project scope; the 'ivan' marketplace is declared in
 #        .claude/settings.json → extraKnownMarketplaces) -----------------------
@@ -34,7 +34,7 @@ if command -v claude >/dev/null 2>&1; then
   done
 else
   echo "bootstrap: 'claude' CLI not found — skipping plugin install." >&2
-  echo "bootstrap: later run: claude plugin install core-dev@ivan studio-policy@ivan stack-node@ivan --scope project" >&2
+  echo "bootstrap: later run: claude plugin install core-dev@ivan studio-policy@ivan --scope project" >&2
 fi
 
 # --- 2. Private-reference pre-commit guard ---------------------------------
