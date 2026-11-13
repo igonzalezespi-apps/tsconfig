@@ -5,8 +5,8 @@
 
 <!-- Telegráfico: hechos, números, comandos. Qué se MIDIÓ (con el número), qué se
      probó y CÓMO (suite, disparo real, mutación), qué riesgo queda vivo.
-     Si toca modelo de datos, API pública, gasto, credenciales/seguridad, el
-     contrato o un CLAUDE.md: en la primera línea. -->
+     Si toca modelo de datos, API pública, gasto, credenciales/seguridad, los
+     hooks de git o un CLAUDE.md: en la primera línea. -->
 
 ## Merge method
 
